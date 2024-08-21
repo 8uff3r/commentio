@@ -21,7 +21,7 @@ onUpdated(() => {
 <template>
   <div class="p-8 flex flex-col items-center gap-2">
     <img
-      src="/logo.webp"
+      src="/logo.png"
       class="object-cover h-10 p-1 mx-auto select-none"
     />
     <Button

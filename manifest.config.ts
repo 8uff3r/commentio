@@ -26,32 +26,32 @@ export default {
     service_worker: 'src/background/index.ts',
     type: 'module',
   },
-  content_scripts: [
-    {
-      all_frames: false,
-      js: ['src/content-script/index.ts'],
-      matches: ['*://*/*'],
-      run_at: 'document_end',
-    },
-  ],
+  // content_scripts: [
+  //   {
+  //     all_frames: false,
+  //     js: ['src/content-script/index.ts'],
+  //     matches: ['*://*/*'],
+  //     run_at: 'document_end',
+  //   },
+  // ],
   offline_enabled: false,
   host_permissions: [],
   permissions: ['storage', 'tabs', 'background', 'activeTab', 'sidePanel'],
   web_accessible_resources: [
-    {
-      matches: ['*://*/*'],
-      resources: ['src/content-script/index.ts'],
-    },
+    // {
+    //   matches: ['*://*/*'],
+    //   resources: ['src/content-script/index.ts'],
+    // },
     // {
     //   matches: ['*://*/*'],
     //   resources: ['src/content-script/iframe/index.html'],
     // },
   ],
   icons: {
-    16: 'src/assets/logo.png',
-    24: 'src/assets/logo.png',
-    32: 'src/assets/logo.png',
-    128: 'src/assets/logo.png',
+    16: 'src/assets/logo-mini.png',
+    24: 'src/assets/logo-mini.png',
+    32: 'src/assets/logo-mini.png',
+    128: 'src/assets/logo-mini.png',
   },
   side_panel: {
     default_path: 'src/sidepanel/index.html',
