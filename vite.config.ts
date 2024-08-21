@@ -42,10 +42,6 @@ export default defineConfig({
           dir: 'src/options/pages',
           baseRoute: 'options',
         },
-        {
-          dir: 'src/content-script/iframe/pages',
-          baseRoute: 'iframe',
-        },
       ],
     }),
 
@@ -89,7 +85,6 @@ export default defineConfig({
   build: {
     rollupOptions: {
       input: {
-        iframe: 'src/content-script/iframe/index.html',
         popup: 'src/popup/index.html',
         setup: 'src/setup/index.html',
         options: 'src/options/index.html',

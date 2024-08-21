@@ -42,10 +42,10 @@ export default {
       matches: ['*://*/*'],
       resources: ['src/content-script/index.ts'],
     },
-    {
-      matches: ['*://*/*'],
-      resources: ['src/content-script/iframe/index.html'],
-    },
+    // {
+    //   matches: ['*://*/*'],
+    //   resources: ['src/content-script/iframe/index.html'],
+    // },
   ],
   icons: {
     16: 'src/assets/logo.png',
