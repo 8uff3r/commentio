@@ -46,12 +46,12 @@ jobs:
 
       - run: pnpm build
       - run: zip -r ${{ env.version }}.zip dist
-      - run: pushd dist/firefox
-      - run: zip -r $OLDPWD/firefox-${{ env.version }}.zip ./*
-      - run: popd
-      - run: pushd dist/chrome
-      - run: zip -r $OLDPWD/chromium-${{ env.version }}.zip ./*
-      - run: popd
+      - run: cd dist/firefox
+      - run: zip -r ../../firefox-${{ env.version }}.zip ./*
+      - run: cd -
+      - run: cd dist/chrome
+      - run: zip -r ../../chromium-${{ env.version }}.zip ./*
+      - run: cd -
 
       - name: GH Release
         uses: softprops/action-gh-release@v0.1.15
