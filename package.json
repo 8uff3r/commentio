@@ -4,10 +4,10 @@
   "type": "module",
   "version": "0.0.1",
   "private": true,
-  "description": "A Vue 3 + Vite project for building Chrome extensions",
+  "description": "Commentio Repo",
   "repository": {
     "type": "git",
-    "url": "https://github.com/mubaidr/vite-vue3-chrome-extension-v3"
+    "url": "https://github.com/8uff3r/commnetio"
   },
   "scripts": {
     "build": "npm run build:chrome && npm run build:firefox",
