@@ -27,15 +27,17 @@ export const usePostStore = defineStore('post', () => {
     userUpVotes.value.add(id).add(id)
     pb.collection('posts').update(id, {
       'upvotes+': userId,
+      'downvotes-': userId,
     })
   }
   const downvote = (id: string) => {
     const userId = pb.authStore.model?.id
     if (!userId) return
     userUpVotes.value.delete(id)
-    userDownVotes.value
+    userDownVotes.value.add(id)
     pb.collection('posts').update(id, {
       'downvotes+': userId,
+      'upvotes-': userId,
     })
   }
   return { downvote, upvote, add, getPosts, posts, userDownVotes, userUpVotes }

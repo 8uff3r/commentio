@@ -16,6 +16,7 @@ const add = async () => {
   const activeTab = await getActiveTab()
   if (!activeTab?.url || comment.value.length < 10) return
   postStore.add(activeTab?.url, comment.value)
+  comment.value = ''
 }
 </script>
 
