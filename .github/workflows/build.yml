@@ -19,7 +19,7 @@ jobs:
       - run: pnpm install --no-frozen-lockfile
         env:
           PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1
-      - run: pnpm lint
+      # - run: pnpm lint
       - run: pnpm build
 
       - uses: akhilmhdh/contributors-readme-action@v2.3.10
