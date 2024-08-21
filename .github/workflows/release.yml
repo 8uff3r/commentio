@@ -46,6 +46,12 @@ jobs:
 
       - run: pnpm build
       - run: zip -r ${{ env.version }}.zip dist
+      - run: pushd dist/firefox
+      - run: zip -r $OLDPWD/firefox-${{ env.version }}.zip ./*
+      - run: popd
+      - run: pushd dist/chrome
+      - run: zip -r $OLDPWD/chromium-${{ env.version }}.zip ./*
+      - run: popd
 
       - name: GH Release
         uses: softprops/action-gh-release@v0.1.15
@@ -53,4 +59,7 @@ jobs:
           tag_name: ${{ env.version }}
           name: ${{ env.version }}
           draft: true
-          files: ${{ env.version }}.zip
+          files: |
+            ${{ env.version }}.zip
+            firefox-${{ env.version }}.zip
+            chromium-${{ env.version }}.zip
