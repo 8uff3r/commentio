@@ -17,11 +17,13 @@ const submit = async () => {
   loading.value = true
   if (mode.value === Mode.REGISTER) {
     const res = await store.signup(email.value, password.value)
-    if (res === true) return emit('signedUp')
+    if (res === true) {
+      emit('signedUp')
+    }
   } else {
     await store.signin(email.value, password.value)
+    emit('signedIn')
   }
-
   loading.value = false
 }
 const emit = defineEmits(['signedIn', 'signedUp'])
@@ -106,7 +108,7 @@ const toggleMode = () => {
     </Card>
   </template>
   <template v-else>
-    <div class="w-full h-full">
+    <div class="w-full h-full flex justify-center items-center">
       <span class="loading loading-spinner loading-lg"></span>
     </div>
   </template>
