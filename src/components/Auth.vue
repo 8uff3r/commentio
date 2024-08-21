@@ -19,6 +19,8 @@ const submit = async () => {
     const res = await store.signup(email.value, password.value)
     if (res === true) {
       emit('signedUp')
+      alert('Successfully signed up, log in!')
+      mode.value = Mode.LOGIN
     }
   } else {
     await store.signin(email.value, password.value)
