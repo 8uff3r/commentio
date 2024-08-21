@@ -22,6 +22,7 @@ pb.afterSend = (response, data) => {
 
   return data
 }
+export { pb }
 
 export async function getActiveTab() {
   const activeTab = (
@@ -32,4 +33,9 @@ export async function getActiveTab() {
   )?.at(0)
   return activeTab
 }
-export { pb }
+
+export const isFirefox = navigator.userAgent.includes('Firefox')
+// Function to check if the current browser is Chrome / Chromium
+export function isChrome() {
+  return typeof chrome !== 'undefined'
+}

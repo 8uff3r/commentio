@@ -1,4 +1,26 @@
-import Browser from 'webextension-polyfill'
+import Browser, { Tabs } from 'webextension-polyfill'
+import { onMessage, sendMessage } from 'webext-bridge/background'
+
+// Function to check if the current browser is support chrome.sidePanel
+function isChromePanel() {
+  return (
+    typeof chrome !== 'undefined' && typeof chrome.sidePanel !== 'undefined'
+  )
+}
+
+// Execute Firefox-specific code
+if (isFirefox) {
+  Browser.action.onClicked.addListener(function () {
+    Browser.sidebarAction.toggle()
+  })
+}
+
+// Execute Chrome-specific code
+if (isChromePanel()) {
+  chrome.sidePanel
+    .setPanelBehavior({ openPanelOnActionClick: true })
+    .catch((error) => console.error(error))
+}
 
 chrome.runtime.onInstalled.addListener(async (opt) => {
   // Check if reason is install or update. Eg: opt.reason === 'install' // If extension is installed.
@@ -22,25 +44,42 @@ chrome.runtime.onInstalled.addListener(async (opt) => {
   }
 })
 
-// console.log('hello world from background')
+//FIXME: webext-bridge doesn't support sidePanel yet
 
-// remove or turn this off if you don't use side panel
-const USE_SIDE_PANEL = true
-
-// to toggle the sidepanel with the action button in chromium:
-// if (USE_SIDE_PANEL) {
-//   //@ts-expect-error
-//   Browser.sidePanel
-//     .setPanelBehavior({ openPanelOnActionClick: true })
-//     .catch((error: unknown) => console.error(error))
-// }
-// self.onerror = function (message, source, lineno, colno, error) {
-//   console.info(
-//     `Error: ${message}\nSource: ${source}\nLine: ${lineno}\nColumn: ${colno}\nError object: ${error}`
+// let previousTabId = 0
+// browser.tabs.onUpdated.addListener(async (tabId) => {
+//   if (!previousTabId) {
+//     previousTabId = tabId
+//     return
+//   }
+//
+//   let tab: Tabs.Tab
+//
+//   try {
+//     tab = await browser.tabs.get(previousTabId)
+//     previousTabId = tabId
+//   } catch {
+//     return
+//   }
+//
+//   sendMessage(
+//     'get-current-url',
+//     { title: tab?.title ?? '', url: tab?.url ?? '' },
+//     { context: 'content-script', tabId }
 //   )
-// }
-
-Browser.browserAction.onClicked.addListener(() => {
-  Browser.sidebarAction.open()
-})
-export {}
+// })
+// onMessage('get-current-url', async () => {
+//   try {
+//     const tab = await browser.tabs.get(previousTabId)
+//     return {
+//       url: tab?.url,
+//       title: tab?.title,
+//     }
+//   } catch {
+//     return {
+//       title: undefined,
+//       url: undefined,
+//     }
+//   }
+// })
+// export {}

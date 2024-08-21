@@ -46,7 +46,14 @@ export default defineConfig({
     }),
 
     AutoImport({
-      imports: ['vue', 'vue-router', '@vueuse/core'],
+      imports: [
+        'vue',
+        'vue-router',
+        '@vueuse/core',
+        {
+          'webextension-polyfill': [['*', 'browser']],
+        },
+      ],
       dts: 'src/types/auto-imports.d.ts',
       dirs: ['src/composables/', 'src/stores/', 'src/utils/'],
     }),
@@ -58,7 +65,7 @@ export default defineConfig({
       dts: 'src/types/components.d.ts',
       resolvers: [
         // auto import icons
-        IconsResolver(),
+        IconsResolver({ prefix: '' }),
       ],
     }),
 

@@ -6,16 +6,6 @@ const displayName = __DISPLAY_NAME__
 const gitURL = __GITHUB_URL__
 const gitCommit = __GIT_COMMIT__
 const gitCommitURL = `${gitURL}/commit/${gitCommit}`
-
-function openOptionsPage() {
-  Browser.runtime.openOptionsPage()
-}
-onMounted(() => {
-  Browser.sidebarAction.open()
-})
-onUpdated(() => {
-  Browser.sidebarAction.open()
-})
 </script>
 
 <template>
