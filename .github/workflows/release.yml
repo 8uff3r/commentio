@@ -46,12 +46,8 @@ jobs:
 
       - run: pnpm build
       - run: zip -r ${{ env.version }}.zip dist
-      - run: cd dist/firefox
-      - run: zip -r ../../firefox-${{ env.version }}.zip ./*
-      - run: cd -
-      - run: cd dist/chrome
-      - run: zip -r ../../chromium-${{ env.version }}.zip ./*
-      - run: cd -
+      - run: cd dist/firefox; zip -r ../../firefox-${{ env.version }}.zip ./*
+      - run: cd dist/chrome; zip -r ../../chromium-${{ env.version }}.zip ./*
 
       - name: GH Release
         uses: softprops/action-gh-release@v0.1.15
